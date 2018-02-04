@@ -1,0 +1,66 @@
+body{
+    background-color: black;
+}
+.mother-ship {
+    min-width: 10px;
+    min-height: 10px;
+    background-color: white;
+    border: 1px solid grey;
+    display: inline-block;
+    max-width: 50px;
+    max-height: 50px;
+    border-radius: 20%;
+    margin: 2px auto;
+    align-content: center;
+}
+
+#space{
+    width: 95%;
+    height: 500px;
+    border: 1px dashed antiquewhite;
+    position: absolute;
+    margin: 0 auto;
+    align-content: center;
+}
+#grid {
+    width: 200px;
+    align-content: center;
+}
+
+#space-craft {
+  background: blue;
+  display: inline-block;
+  width: 5px;
+  height: 5px;
+  margin: 380px 90px 30px;
+  overflow: hidden;
+}
+    
+#life {
+    color: white;
+    font-family: "Amatic SC";
+    padding: 510px 0 0 0;
+}
+#score {
+    color: white;
+    font-family: "Amatic SC";
+    float: right;
+    margin: -40px 60px 0 0;
+}
+#name-player1 {
+    color: white;
+    font-family: "Amatic SC";
+}
+#name-player2 {
+    color: white;
+    font-family: "Amatic SC";
+    margin: -15px 0 0 0;
+    
+}
+
+.invisible-marker {
+    color: red;
+    width: 15px;
+    height: 15px;
+
+}
