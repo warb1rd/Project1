@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <style>
+        #block {
+            width: 50px;
+            height: 20px;
+            background-color: black;
+            transition: margin 700ms;
+        }
+        #but {
+            width: 20px;
+            height: 20px;
+            background-color: aqua;
+        }
+
+        #block:hover {
+          margin: 0 0 0 500px;
+          transition-duration: 1000ms;
+}
+        
+    </style>
+    <title>animation using margin</title>
+</head>
+<body>
+    <div id = "block"></div>
+    <button id "but"></button>
+
+    <script>
+        var $button = $("#but")
+        var $block = $("#block");
+        // function moveBlock(){
+        //     if($this.css("margin","0"))
+        //     {$this.css("margin","50px")}
+        // }
+
+        $block.click(function(){
+    $(this).toggleClass("open");
+});
+    </script>
+</body>
+</html>

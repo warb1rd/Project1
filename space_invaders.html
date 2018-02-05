@@ -4,10 +4,13 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
-    <title>Invaders</title>
     <link rel="stylesheet" href="invaders_style.css">
     <link rel = "stylesheet" href="https://fonts.googleapis.com/css?family=Amatic+SC">
-
+    <script src="http://code.jquery.com/jquery-3.3.1.js" integrity="sha256-2Kok7MbOyxpgUVvAk/HJ2jigOSYS2auK4Pfzbm7uH60=" crossorigin="anonymous"></script>
+    
+    <title>Invaders</title>
+</head>
+     
 <body>
     <div id = "space">
         <div id = "grid">
@@ -70,18 +73,26 @@
             <div class = "mother-ship"></div>
             <div class = "mother-ship"></div>
             <div class = "mother-ship"></div>
-            <div class = "mother-ship"></div>
+            <div class = "mother-ship"></div>   
         </div>
+
+        <div id = "opening-input">
+            <input id = "input-name" type = "text" placeholder = "Who's Player-1 ?">
+            <button id = "ok-btn">Let's do this!</button>
+        </div>
+        <button id = "start-game">GO</button>
+        
         <div id = "space-craft"></div>
     </div>
 
-    <p id = "life">Lives : <span>image of craft</span> <span>image of craft</span></p>
+    <p id = "life">Lives : <span>image of craft</span></p>
     <p id = "score">Score :</p>
-    <p id = "name-player1">Player1 : <span>name of player </span><span class = "invisible-marker">.</span></p>
-    <p id = "name-player2">Player2 : <span>name of player </span><span class = "invisible-marker">.</span></p>
+    <p id = "name-player1">Player-1 : <span id = "name1">name of player</span><span class = "score-player1">, score</span><span class = "invisible-marker">.</span></p>
+    <p id = "name-player2">Player-2 : <span id = "name2">name of player</span><span class = "score-player2">, score</span><span class = "invisible-marker">.</span></p>
 
-    <script src="invaders_js.js">
-    </script>
-</head>
+    <script src="invaders_js.js"></script>
+        
+   
 </body>
+
 </html>
