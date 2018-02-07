@@ -13,6 +13,7 @@
      
 <body>
     <div id = "space">
+        <div id = "opening-image"></div>
         <div id = "grid">
             <div class = "mother-ship"></div>
             <div class = "mother-ship"></div>
@@ -78,14 +79,14 @@
 
         <div id = "opening-input">
             <input id = "input-name" type = "text" placeholder = "Who's Player-1 ?">
-            <button id = "ok-btn">Let's do this!</button>
+            <button id = "ok-btn">ok</button>
         </div>
         
-        <button id = "start-game">GO</button>
+        <button id = "start-game">f i r e !</button>
         
         <div id = "photon"></div>
         <div id = "space-craft"></div>
-        
+        <!-- create a div for opening screen with SI logo -->
     </div>
 
     <p id = "life">Lives : <span>image of craft</span></p>
@@ -118,7 +119,7 @@ var $invaders = $("#grid");
 var $score = $("#score");
 var $scorePlayer1 = $("#score-player1");
 var $scorePlayer2 = $("#score-player2");
-
+var $openingImage = $("#opening-image");
 
 var enemyMovement;   
 var movement;
@@ -131,6 +132,7 @@ $invaders.hide();
 
 var game = {
     players:    [{name:$player1Name}, {name:$player2Name}],
+    photonMoving: false,
 
     switchPlayer: function(){
                     if(game.currentPlayer === game.players[0]){                          
@@ -139,7 +141,7 @@ var game = {
                         game.currentPlayer = game.players[0]
                     }
                 },
-    goButton:   function(){                                                                                          // asks players for names and stores in the bottom 
+    goButton:   function(){
                     var theName =  $nameInput.val(); 
                     if($player1Name.text() === "name of player"){
                         // console.log($player1Name)
@@ -148,7 +150,7 @@ var game = {
                         // console.log('You typed');
                         // console.log(theName);
                         $nameInput.attr("placeholder","Who's Player-2 ?");                                          // change the placeholder to "who's player-2 ?"
-                    } else {
+                    }else{
                         $player2Name.text(theName);
                         console.log(theName);                        
                     }
@@ -156,6 +158,7 @@ var game = {
                     function hideInput(){                                                                           // hide the input divs after players enter names.
                         $(this).parent().hide(1000);
                         $startButton.show(1000);
+                        $openingImage.hide(1000);    
                     }
                 $okBtn.on("click", hideInput);     
                 },
@@ -164,12 +167,13 @@ var game = {
                     $spaceCraft.show(500);
                     $invaders.show(500);
                     $photon.show(500);
+                    $openingImage.hide(500);
                     $startButton.hide(500);
                     enemyMovement = setInterval(game.moveRight,15);
                     movement = setInterval(game.movephoton, 20);
                 },
 
-    moveRight:  function (){ 
+    moveRight:  function(){ 
                     var $windowWidth = $(window).width();
                     console.log(enemyMovement)
                     $invaders.css("marginLeft", "+=4px")
@@ -184,7 +188,7 @@ var game = {
                         }
             },
 
-    moveDown:   function (){
+    moveDown:   function(){
                     $invaders.css("marginTop", "+=8px")
                     console.log((parseInt($invaders.css("marginTop")) > parseInt(100)))
                     if(parseInt($invaders.css("marginTop")) > parseInt(50)){
@@ -192,7 +196,7 @@ var game = {
                         enemyMovement = setInterval(game.moveLeft, 15)}      
             },
 
-    moveLeft:   function (){
+    moveLeft:   function(){
                     $invaders.css("marginLeft", "-=4px")   
                     if(parseInt($invaders.css("marginLeft")) < 2){
                         clearInterval(enemyMovement)
@@ -201,7 +205,7 @@ var game = {
                     }
                 },
 
-    moveDownAgain:  function (){
+    moveDownAgain:  function(){
                         $invaders.css("marginTop", "+=8px")
                         if(parseInt($invaders.css("marginTop"))>100){            
                             clearInterval(enemyMovement)
@@ -209,27 +213,33 @@ var game = {
                     },
   
     moveCraft:  function(e){
-                    if (e.keyCode == "37"){   
+                    if(e.keyCode == "37"){   
                         console.log("move craft left")
                             $spaceCraft.css("left", "-=1%");
                     }
                     if (e.keyCode == "39"){   
-                        console.log("move craft left")
+                        console.log("move craft right")
                             $spaceCraft.css("left", "+=1%");
                     }
                 },
 
-    photon:     function (e){
-                    if (e.keyCode == "32"){
+    photon:     function(e){
+                    if(e.keyCode == "32"){
                         console.log('fire!')
-                        movement = setInterval(movephoton, 10)
+                        if (game.photonMoving === false){
+                            movement = setInterval(movephoton, 10)
+                        } 
                         function movephoton(){
+                            game.photonMoving = true;
                             $photon.css("marginTop", "-=2px");
                             if(parseInt($photon.css("marginTop")) < -100){
                                 console.log($photon.css("marginTop"))
                                 clearInterval(movement)
+                                game.photonMoving = false;
                                 $photon.css('marginTop', '375px') 
-                            }                   
+                            }  
+                            if(parseInt($photon.css("marginTop")) < parseInt($invaders.css("marginTop")) && $photon.css("marginLeft") < $invaders.css("width")){
+                            console.log("collided")}                 
                         }
                     }
                 },
@@ -237,7 +247,7 @@ var game = {
                 // if position of photon = position of invader div, explode(hide)
                 },
     
-    stopGame:   function (){
+    stopGame:   function(){
                     clearInterval(movement)
                     alert("they anhilated you! game over")
                     $spaceCraft.hide();
@@ -247,7 +257,7 @@ var game = {
                     // add who won with score
                 },
     
-    scoreCard:  function (){}
+    scoreCard:  function(){}
     
 }
 

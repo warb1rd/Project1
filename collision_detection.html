@@ -4,34 +4,103 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
-    <title>Document</title>
+    <script src="http://code.jquery.com/jquery-3.3.1.js" integrity="sha256-2Kok7MbOyxpgUVvAk/HJ2jigOSYS2auK4Pfzbm7uH60=" crossorigin="anonymous"></script>
+    <style>
+        #yellow-box {
+            width: 50px;
+            height: 50px;
+            background-color: yellow;
+        }
+        #blue-box {
+            width: 10px;
+            height: 10px;
+            background-color: blue;
+        }
+    </style>
+    <title>Invaders</title>
 </head>
+     
 <body>
-    
+    <div id="yellow-box"></div>
+    <div id="blue-box"></div>
+    <script>
+        var $yellow = $("#yellow-box");
+        var $blue = $("#blue-box");
+        
+        // THEORY OF COLLISION :
+
+        function moveBlue(e){
+            if (e.keyCode == "37"){   
+                // console.log("moved left")
+                    $blue.css("marginLeft", "-=1px");
+                    console.log($blue.position());
+                    console.log($blue.css("marginLeft"));        
+            }
+
+            if (e.keyCode == "38"){   
+                // console.log("move craft up")
+                    $blue.css("marginTop", "-=1px");
+                    console.log($blue.position());
+                    console.log($blue.css("marginTop"));       
+            }
+
+            if (e.keyCode == "39"){   
+                // console.log("move craft right")
+                    $blue.css("marginLeft", "+=1px");
+                    console.log($blue.position());
+                    console.log($blue.css("marginLeft"));
+                }
+
+            if (e.keyCode == "40"){   
+                // console.log("move craft down")
+                    $blue.css("marginTop", "+=1px");
+                    console.log($blue.position());
+                    console.log($blue.css("marginTop"));
+            }
+        if($blue.css("marginTop") < $yellow.css("marginBottom") && $blue.css("marginLeft") < $yellow.css("width")){
+            console.log("collided");
+            $yellow.css("background-color", "red")
+            } else {
+                $yellow.css("background-color", "yellow")
+            }                        
+        }
+       
+        window.addEventListener("keydown", moveBlue);
+
+        // function collide(){ 
+        //     $yellow = {x: 8, y: 8, width: 50, height: 50}
+        //     $blue = {x: 58, y: 8, width: 10, height: 10}
+            
+        // // if theres no gap between the two boxes, they've collided.
+            
+        // if ($yellow.x < $blue.x + $blue.width &&
+        //     $yellow.x + $yellow.width > $blue.x &&
+        //     $yellow.y < $blue.y + $blue.height &&
+        //     $yellow.height + $yellow.y > $blue.y) 
+        //     {console.log("collision")}
+        // }
+
+        
+       
+            // 
+        
+            
+            //     // collision detected!
+            // }
+            
+            // // filling in the values =>
+            
+            // if (5 < 30 &&
+            //     55 > 20 &&
+            //     5 < 20 &&
+            //     55 > 10) {
+                // collision detected!
+            // }
+
+            
+    </script>
+        
+   
 </body>
+
 </html>
-<script>
-// THEORY OF COLLISION :
-
-var rect1 = {x: 5, y: 5, width: 50, height: 50}
-var rect2 = {x: 20, y: 10, width: 10, height: 10}
-
-// if theres no gap between the two boxes, they've collided.
-
-if (rect1.x < rect2.x + rect2.width &&
-   rect1.x + rect1.width > rect2.x &&
-   rect1.y < rect2.y + rect2.height &&
-   rect1.height + rect1.y > rect2.y) {
-
-    // collision detected!
-}
-
-// filling in the values =>
-
-if (5 < 30 &&
-    55 > 20 &&
-    5 < 20 &&
-    55 > 10) {
-    // collision detected!
-}
-</script>

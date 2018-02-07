@@ -1,6 +1,15 @@
 body{
     background-color: black;
 }
+
+#opening-image {
+    background-image: url("space-invaders-logo.png");
+    background-repeat: no-repeat;
+    margin: 0 0 0 50px;
+    background-size: 100%;
+    width: 1050px;
+    height: 270px;
+}
 .mother-ship {
     background-image: url("invader1.png"); 
     background-position: center;
@@ -99,7 +108,7 @@ body{
     margin: 100px auto;
     width: 220px;
 }
-  #ok-btn {
+#ok-btn {
     background: rgba(0,84,166,0.95);
     border: none;
     color: #fff;
@@ -113,7 +122,7 @@ body{
     padding: 0;
   }
   
-  #start-game{
+#start-game{
     background: rgba(0,84,166,0.95);
     border: none;
     color: #fff;
@@ -122,7 +131,5 @@ body{
     line-height: 20px;
     height: 36px;
     width: 80px;
-    margin: 250px 0 0 500px;
-    
-    
+    margin: 250px 0 0 550px;
   }
