@@ -83,7 +83,7 @@
         
         <button id = "start-game">GO</button>
         
-        <div id = "bullet"></div>
+        <div id = "photon"></div>
         <div id = "space-craft"></div>
         
     </div>
@@ -112,7 +112,7 @@ var $player2Name = $("#name2");
 var $nameInput = $("#input-name");
 var $okBtn = $("#ok-btn");
 var $spaceCraft = $("#space-craft");
-var $bullet = $("#bullet");
+var $photon = $("#photon");
 var $startButton = $("#start-game");
 var $invaders = $("#grid");
 var $score = $("#score");
@@ -125,12 +125,13 @@ var movement;
  
 $startButton.hide();
 $spaceCraft.hide();
-$bullet.hide();
+$photon.hide();
 $invaders.hide();
 
 
 var game = {
     players:    [{name:$player1Name}, {name:$player2Name}],
+
     switchPlayer: function(){
                     if(game.currentPlayer === game.players[0]){                          
                     game.currentPlayer = game.players[1]
@@ -138,7 +139,7 @@ var game = {
                         game.currentPlayer = game.players[0]
                     }
                 },
-    goButton:   function(){                                                                                // asks players for names and stores in the bottom 
+    goButton:   function(){                                                                                          // asks players for names and stores in the bottom 
                     var theName =  $nameInput.val(); 
                     if($player1Name.text() === "name of player"){
                         // console.log($player1Name)
@@ -156,17 +157,16 @@ var game = {
                         $(this).parent().hide(1000);
                         $startButton.show(1000);
                     }
-                $okBtn.on("click", hideInput);
-                
-                },  //call the function hideInput?
+                $okBtn.on("click", hideInput);     
+                },
    
     showGame:   function(){
                     $spaceCraft.show(500);
                     $invaders.show(500);
-                    $bullet.show(500);
+                    $photon.show(500);
                     $startButton.hide(500);
                     enemyMovement = setInterval(game.moveRight,15);
-                    movement = setInterval(game.moveBullet, 20);
+                    movement = setInterval(game.movephoton, 20);
                 },
 
     moveRight:  function (){ 
@@ -177,7 +177,7 @@ var game = {
                         clearInterval(enemyMovement)
                         enemyMovement = setInterval(game.moveDown, 15)}
 
-                    if(parseInt(($invaders.css("marginTop"))) > 320){
+                    if(parseInt(($invaders.css("marginTop"))) > 330){
                         clearInterval(enemyMovement);
                         game.stopGame();
                         console.log(parseInt(($invaders.css("marginTop"))))
@@ -208,33 +208,42 @@ var game = {
                             enemyMovement = setInterval(game.moveRight, 15)}
                     },
   
-    moveCraft:  function(){
-
+    moveCraft:  function(e){
+                    if (e.keyCode == "37"){   
+                        console.log("move craft left")
+                            $spaceCraft.css("left", "-=1%");
+                    }
+                    if (e.keyCode == "39"){   
+                        console.log("move craft left")
+                            $spaceCraft.css("left", "+=1%");
+                    }
                 },
 
-    bullet:     function (e) {
+    photon:     function (e){
                     if (e.keyCode == "32"){
-                        console.log('move craft')
-                        movement = setInterval(moveBullet, 10)
-                        function moveBullet(){
-                            $bullet.css('marginTop', '-=2px');
-                            if(parseInt($bullet.css('marginTop')) < -100){
-                                console.log($bullet.css("marginTop"))
+                        console.log('fire!')
+                        movement = setInterval(movephoton, 10)
+                        function movephoton(){
+                            $photon.css("marginTop", "-=2px");
+                            if(parseInt($photon.css("marginTop")) < -100){
+                                console.log($photon.css("marginTop"))
                                 clearInterval(movement)
-                                $bullet.css('marginTop', '375px') }                   
-                            }
+                                $photon.css('marginTop', '375px') 
+                            }                   
                         }
+                    }
                 },
     hitCraft:   function(){
-
-            },
+                // if position of photon = position of invader div, explode(hide)
+                },
     
-    
-
     stopGame:   function (){
                     clearInterval(movement)
                     alert("they anhilated you! game over")
-                    // add some game over sign
+                    $spaceCraft.hide();
+                    $photon.hide();
+                    $invaders.hide();
+                    // add game over window
                     // add who won with score
                 },
     
@@ -243,16 +252,19 @@ var game = {
 }
 
 
+window.addEventListener("keydown", game.moveCraft);
 
-window.addEventListener("keydown", game.bullet);
+window.addEventListener("keydown", game.photon);
 
 $okBtn.on("click", game.goButton);
 
-$bullet.css({'marginTop': '370px', 'marginLeft': '600px'})
+$photon.css({'marginTop': '370px', 'marginLeft': '600px'})
+// $spaceCraft.css({'marginTop': '10px', 'marginLeft': '50px'})
+
     
            
             
-// create a variable called moving where if bullet is already moving, don't run the move function again till bullet reaches border.
+// create a variable called moving where if photon is already moving, don't run the move function again till photon reaches border.
 
 
 // var game = {
