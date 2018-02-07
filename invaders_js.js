@@ -11,7 +11,6 @@
 // engage game 
 
 
-
 var $player1Name = $("#name1");
 var $player2Name = $("#name2");
 var $nameInput = $("#input-name");
@@ -19,12 +18,15 @@ var $okBtn = $("#ok-btn");
 var $spaceCraft = $("#space-craft");
 var $startButton = $("#start-game");
 var $invaders = $("#grid");
+var count = 0;
+
 $startButton.hide();
 $spaceCraft.hide();
 $invaders.hide();
 
 
-function goButton(){                                                                                // asks players for names and stores in the bottom 
+function goButton(){   
+    // asks players for names and stores in the bottom 
     var theName =  $nameInput.val();
     
     if($player1Name.text() === "name of player"){
@@ -46,42 +48,88 @@ function goButton(){                                                            
         $spaceCraft.show(500);
         $invaders.show(500);
         $startButton.hide(500);
-    }
+        var enemyMovement = setInterval(moveRight,15);
+        
     
+    function moveRight(){ 
+          
+        $invaders.css("marginLeft", "+=4px")
+        if(parseInt($invaders.css("marginLeft"))>1005){            
+            clearInterval(enemyMovement)
+
+            enemyMovement = setInterval(moveDown, 15)
+            function moveDown(){
+                $invaders.css("marginTop", "+=8px")
+                if(parseInt($invaders.css("marginTop"))>100){
+                    clearInterval(enemyMovement);
+
+                    enemyMovement = setInterval(moveLeft, 15) 
+                    function moveLeft(){
+                        $invaders.css("marginLeft", "-=4px")   
+                        if(parseInt($invaders.css("marginLeft")) < 2){
+                            clearInterval(enemyMovement)
+                            console.log($invaders.css("marginLeft"))           
+                            
+                            enemyMovement = setInterval(moveDownAgain, 15)   
+                            function moveDownAgain(){
+                            $invaders.css("marginTop", "+=8px")   
+                            if(parseInt($invaders.css("marginTop")) > 200){ 
+                                console.log($invaders.css("marginTop"))           
+                                clearInterval(enemyMovement)
+                            
+                                enemyMovement = setInterval(moveRight, 15)
+
+                                if(parseInt(($invaders.css("marginTop"))) > 340){
+                                    clearInterval(enemyMovement)
+                                    console.log(parseInt(($invaders.css("marginTop"))))
+                                }
+                               
+                                // if(parseInt($invaders.css("marginLeft"))>100){ 
+                                //     console.log($invaders.css("marginLeft"))
+                                //     clearInterval(enemyMovement)
+                                //     console.log("end reached");
+                                       
+                                // } 
+                                
+                                
+                            }
+                        }
+                    } 
+                }         
+            }
+        }   
+    }
+        
+}
+    }
+     
          $okBtn.on("click", hideInput);
          $startButton.on("click",showGame);
 }
 
-// var myVar;
-// function myFunction() {
-//     myVar = setInterval(bullet, 3000);
-// }
-
-// function bullet() {
-//   $spaceCraft.css({marginTop:"100px"})
-// }
 
 function bullet(e) {
     if (e.keyCode == "32"){
-    // var $spaceCraft = $("#space-craft");  (declared outside fn)
-    var pos = 0;
-    var id = setInterval(frame, 15);
-    function frame() {
-        if (pos == 50) {
-            clearInterval(id);
-        } else {
-        pos--; 
-        $spaceCraft.css("marginTop", pos + 'px') ;
-        }
+        console.log('move craft')
+
+        var movement = setInterval(moveCraft, 20)
+        function moveCraft(){
+            $spaceCraft.css('marginTop', '-=2px');
+            if(parseInt($spaceCraft.css('marginTop')) < -100){
+                console.log($spaceCraft.css("marginTop"))
+            clearInterval(movement)
+            $spaceCraft.css('marginTop', '375px')
+            // create a variable called moving where if bullet is already moving, don't run the move function again till bullet reaches border.
+            }
         }
     }
 }
 
 window.addEventListener("keydown", bullet);
- 
+
 $okBtn.on("click", goButton);
-
-
+$spaceCraft.css({'marginTop': '375px', 'marginLeft': '600px'});
+$invaders.css({"marginTop":"0", "marginLeft": "0"});
 
 
 

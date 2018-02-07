@@ -1,0 +1,282 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <link rel="stylesheet" href="invaders_style.css">
+    <link rel = "stylesheet" href="https://fonts.googleapis.com/css?family=Amatic+SC">
+    <script src="http://code.jquery.com/jquery-3.3.1.js" integrity="sha256-2Kok7MbOyxpgUVvAk/HJ2jigOSYS2auK4Pfzbm7uH60=" crossorigin="anonymous"></script>
+    
+    <title>Invaders</title>
+</head>
+     
+<body>
+    <div id = "space">
+        <div id = "grid">
+            <div class = "mother-ship"></div>
+            <div class = "mother-ship"></div>
+            <div class = "mother-ship"></div>
+            <div class = "mother-ship"></div>
+            <div class = "mother-ship"></div>
+            <div class = "mother-ship"></div>
+            <div class = "mother-ship"></div>
+            <div class = "mother-ship"></div>
+            <div class = "mother-ship"></div>
+            <div class = "mother-ship"></div>
+            <div class = "mother-ship"></div>
+            <div class = "mother-ship"></div>
+            <div class = "mother-ship"></div>
+            <div class = "mother-ship"></div>
+            <div class = "mother-ship"></div>
+            <div class = "mother-ship"></div>
+            <div class = "mother-ship"></div>
+            <div class = "mother-ship"></div>
+            <div class = "mother-ship"></div>
+            <div class = "mother-ship"></div>
+            <div class = "mother-ship"></div>
+            <div class = "mother-ship"></div>
+            <div class = "mother-ship"></div>
+            <div class = "mother-ship"></div>
+            <div class = "mother-ship"></div>
+            <div class = "mother-ship"></div>
+            <div class = "mother-ship"></div>
+            <div class = "mother-ship"></div>
+            <div class = "mother-ship"></div>
+            <div class = "mother-ship"></div>
+            <div class = "mother-ship"></div>
+            <div class = "mother-ship"></div>
+            <div class = "mother-ship"></div>
+            <div class = "mother-ship"></div>
+            <div class = "mother-ship"></div>
+            <div class = "mother-ship"></div>
+            <div class = "mother-ship"></div>
+            <div class = "mother-ship"></div>
+            <div class = "mother-ship"></div>
+            <div class = "mother-ship"></div>
+            <div class = "mother-ship"></div>
+            <div class = "mother-ship"></div>
+            <div class = "mother-ship"></div>
+            <div class = "mother-ship"></div>
+            <div class = "mother-ship"></div>
+            <div class = "mother-ship"></div>
+            <div class = "mother-ship"></div>
+            <div class = "mother-ship"></div>
+            <div class = "mother-ship"></div>
+            <div class = "mother-ship"></div>
+            <div class = "mother-ship"></div>
+            <div class = "mother-ship"></div>
+            <div class = "mother-ship"></div>
+            <div class = "mother-ship"></div>
+            <div class = "mother-ship"></div>
+            <div class = "mother-ship"></div>
+            <div class = "mother-ship"></div>
+            <div class = "mother-ship"></div>
+            <div class = "mother-ship"></div>
+            <div class = "mother-ship"></div>   
+        </div>
+
+        <div id = "opening-input">
+            <input id = "input-name" type = "text" placeholder = "Who's Player-1 ?">
+            <button id = "ok-btn">Let's do this!</button>
+        </div>
+        
+        <button id = "start-game">GO</button>
+        
+        <div id = "bullet"></div>
+        <div id = "space-craft"></div>
+        
+    </div>
+
+    <p id = "life">Lives : <span>image of craft</span></p>
+    <p id = "score">Score :</p>
+    <p id = "name-player1">Player-1 : <span id = "name1">name of player</span><span class = "score-player1">, score</span><span class = "invisible-marker">.</span></p>
+    <p id = "name-player2">Player-2 : <span id = "name2">name of player</span><span class = "score-player2">, score</span><span class = "invisible-marker">.</span></p>
+
+    <script>
+    
+// var player1Name = prompt("Enter Player1");
+// var player2Name = prompt("Enter Player2");
+
+
+// $player1Name.val(player1Name);
+
+// OPENING screen with inputs for player1 player 2 names
+// hide opening screen when "ok" button is clicked.
+// add player names on bottom screen
+// engage game 
+
+
+var $player1Name = $("#name1");
+var $player2Name = $("#name2");
+var $nameInput = $("#input-name");
+var $okBtn = $("#ok-btn");
+var $spaceCraft = $("#space-craft");
+var $bullet = $("#bullet");
+var $startButton = $("#start-game");
+var $invaders = $("#grid");
+var $score = $("#score");
+var $scorePlayer1 = $("#score-player1");
+var $scorePlayer2 = $("#score-player2");
+
+
+var enemyMovement;   
+var movement;
+ 
+$startButton.hide();
+$spaceCraft.hide();
+$bullet.hide();
+$invaders.hide();
+
+
+var game = {
+    players:    [{name:$player1Name}, {name:$player2Name}],
+    switchPlayer: function(){
+                    if(game.currentPlayer === game.players[0]){                          
+                    game.currentPlayer = game.players[1]
+                    } else {
+                        game.currentPlayer = game.players[0]
+                    }
+                },
+    goButton:   function(){                                                                                // asks players for names and stores in the bottom 
+                    var theName =  $nameInput.val(); 
+                    if($player1Name.text() === "name of player"){
+                        // console.log($player1Name)
+                        $startButton.on("click",game.showGame)
+                        $player1Name.text(theName);
+                        // console.log('You typed');
+                        // console.log(theName);
+                        $nameInput.attr("placeholder","Who's Player-2 ?");                                          // change the placeholder to "who's player-2 ?"
+                    } else {
+                        $player2Name.text(theName);
+                        console.log(theName);                        
+                    }
+                    $nameInput.val("")
+                    function hideInput(){                                                                           // hide the input divs after players enter names.
+                        $(this).parent().hide(1000);
+                        $startButton.show(1000);
+                    }
+                $okBtn.on("click", hideInput);
+                
+                },  //call the function hideInput?
+   
+    showGame:   function(){
+                    $spaceCraft.show(500);
+                    $invaders.show(500);
+                    $bullet.show(500);
+                    $startButton.hide(500);
+                    enemyMovement = setInterval(game.moveRight,15);
+                    movement = setInterval(game.moveBullet, 20);
+                },
+
+    moveRight:  function (){ 
+                    var $windowWidth = $(window).width();
+                    console.log(enemyMovement)
+                    $invaders.css("marginLeft", "+=4px")
+                    if(parseInt($invaders.css("marginLeft"))>($windowWidth-275)){            
+                        clearInterval(enemyMovement)
+                        enemyMovement = setInterval(game.moveDown, 15)}
+
+                    if(parseInt(($invaders.css("marginTop"))) > 320){
+                        clearInterval(enemyMovement);
+                        game.stopGame();
+                        console.log(parseInt(($invaders.css("marginTop"))))
+                        }
+            },
+
+    moveDown:   function (){
+                    $invaders.css("marginTop", "+=8px")
+                    console.log((parseInt($invaders.css("marginTop")) > parseInt(100)))
+                    if(parseInt($invaders.css("marginTop")) > parseInt(50)){
+                        clearInterval(enemyMovement);
+                        enemyMovement = setInterval(game.moveLeft, 15)}      
+            },
+
+    moveLeft:   function (){
+                    $invaders.css("marginLeft", "-=4px")   
+                    if(parseInt($invaders.css("marginLeft")) < 2){
+                        clearInterval(enemyMovement)
+                        console.log($invaders.css("marginLeft"))
+                        enemyMovement = setInterval(game.moveDownAgain, 15)
+                    }
+                },
+
+    moveDownAgain:  function (){
+                        $invaders.css("marginTop", "+=8px")
+                        if(parseInt($invaders.css("marginTop"))>100){            
+                            clearInterval(enemyMovement)
+                            enemyMovement = setInterval(game.moveRight, 15)}
+                    },
+  
+    moveCraft:  function(){
+
+                },
+
+    bullet:     function (e) {
+                    if (e.keyCode == "32"){
+                        console.log('move craft')
+                        movement = setInterval(moveBullet, 10)
+                        function moveBullet(){
+                            $bullet.css('marginTop', '-=2px');
+                            if(parseInt($bullet.css('marginTop')) < -100){
+                                console.log($bullet.css("marginTop"))
+                                clearInterval(movement)
+                                $bullet.css('marginTop', '375px') }                   
+                            }
+                        }
+                },
+    hitCraft:   function(){
+
+            },
+    
+    
+
+    stopGame:   function (){
+                    clearInterval(movement)
+                    alert("they anhilated you! game over")
+                    // add some game over sign
+                    // add who won with score
+                },
+    
+    scoreCard:  function (){}
+    
+}
+
+
+
+window.addEventListener("keydown", game.bullet);
+
+$okBtn.on("click", game.goButton);
+
+$bullet.css({'marginTop': '370px', 'marginLeft': '600px'})
+    
+           
+            
+// create a variable called moving where if bullet is already moving, don't run the move function again till bullet reaches border.
+
+
+// var game = {
+//    
+//     invadersKilled: 0,
+
+//     openingScreen: function(){
+        
+//     },
+
+//     engage: function(){
+//         game.invadersKilled = 0;
+//         game.currentPlayer = game.players[0];       
+//     },
+
+//     
+
+//     // use keydown, key up, left, right functions
+
+// }
+
+    </script>
+        
+   
+</body>
+
+</html>
