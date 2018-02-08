@@ -1,5 +1,5 @@
 body{
-    background-color: black;
+    background-color: black;   
 }
 
 #opening-image {
@@ -15,8 +15,8 @@ body{
     background-position: center;
     background-size: 200%;
     background-repeat: no-repeat;   
-    min-width: 10px;
-    min-height: 10px;
+    width: 10px;
+    height: 10px;
     border: 1px solid black;
     display: inline-block;
     max-width: 50px;
@@ -27,8 +27,11 @@ body{
 }
 
 #space{
+    background-image: url("Background_space.png");
+    background-repeat: no-repeat;
+    background-size: 100%; 
     width: 95%;
-    height: 500px;
+    height: 550px;
     border: 1px dashed antiquewhite;
     position: relative;
     margin: 0 auto;
@@ -42,6 +45,7 @@ body{
     background-image: url("Star_Trek_Spaceship.png");
     background-position: center;
     background-size: 100%;
+    color: red;
     position: absolute;
     float: left;
     background-color: transparent;
@@ -87,12 +91,16 @@ body{
     margin: 0 0 0 30px;    
 }
 
-.invisible-marker {
+.invisible-marker1 {
     color: red;
-    width: 15px;
-    height: 15px;
+    width: 50px;
+    height: 50px;
 }
-
+.invisible-marker2 {
+    color: black;
+    width: 50px;
+    height: 50px;
+}
 #input-name{
     /* margin: 150px 500px 30px; */
     background: rgba(255,255,255,.95);
@@ -108,6 +116,7 @@ body{
     margin: 100px auto;
     width: 220px;
 }
+
 #ok-btn {
     background: rgba(0,84,166,0.95);
     border: none;
@@ -130,6 +139,30 @@ body{
     font-size: 19px;
     line-height: 20px;
     height: 36px;
+    width: 80px;
+    margin: 250px 0 0 550px;
+  }
+
+  #player2Ready{
+    background: rgba(0,84,166,0.95);
+    border: none;
+    color: #fff;
+    font-family: "Amatic SC";
+    font-size: 19px;
+    line-height: 20px;
+    height: 50px;
+    width: 80px;
+    margin: 250px 0 0 550px;
+  }
+
+  #gameOver{
+    background: rgba(0,84,166,0.95);
+    border: none;
+    color: #fff;
+    font-family: "Amatic SC";
+    font-size: 19px;
+    line-height: 20px;
+    height: 50px;
     width: 80px;
     margin: 250px 0 0 550px;
   }
