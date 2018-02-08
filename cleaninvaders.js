@@ -23,7 +23,7 @@
     var $invisibleMarker1 = $(".invisible-marker1");
     var $invisibleMarker2 = $(".invisible-marker2");
     var $gameOver = $("#gameOver");
-    var score = 0;                                                                                           // Initializing score to 0 to begin with.
+    var score = 0;                                                                                          // Initializing score to 0 to begin with.
     var theScore = $score.text(score); 
 
     var enemyMovement;   
@@ -138,7 +138,7 @@
                         }
                     },
 
-        photon:     function(e){
+        photon:     function(e){                                                                            // When space bar is pressed, photons fire.
                         
                         if(e.keyCode == "32"){
                             console.log('fire!')
