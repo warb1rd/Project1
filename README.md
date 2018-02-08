@@ -8,6 +8,8 @@
 This is the original game flyer from 1978
 
 ---
+![Game Screen Shot](Images/Game.png)
+---
 Planet Mars has become one of the most coveted resource-planet in the entire milky way galaxy. Invaders from beyond have identified the planet and want to plunder its rare metals. You must defend your new home planet of Mars against the ruthless invaders.
 
 ---
@@ -53,6 +55,7 @@ This game is designed to be played quickly. Each player takes less than 5 min to
 
 ---
 #### Dream Works
+---
 Plans are:  
 
 * To make the aliens fire at the players. 
@@ -64,6 +67,7 @@ Plans are:
 
 ---
 #### References
+---
 * Background image = hand drawn.
 * Space-craft image = drawn using photoshop.
 * [Space Invaders logo](http://www.classicgaming.cc/classics/space-invaders/images/space-invaders-logo.png)
