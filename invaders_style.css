@@ -3,7 +3,7 @@ body{
 }
 
 #opening-image {
-    background-image: url("space-invaders-logo.png");
+    background-image: url("images/space-invaders-logo.png");
     background-repeat: no-repeat;
     margin: 0 0 0 50px;
     background-size: 100%;
@@ -11,7 +11,7 @@ body{
     height: 270px;
 }
 .mother-ship {
-    background-image: url("invader1.png"); 
+    background-image: url("images/invader1.png"); 
     background-position: center;
     background-size: 200%;
     background-repeat: no-repeat;   
@@ -27,7 +27,7 @@ body{
 }
 
 #space{
-    background-image: url("Background_space.png");
+    background-image: url("images/Background_space.png");
     background-repeat: no-repeat;
     background-size: 100%; 
     width: 95%;
@@ -42,7 +42,7 @@ body{
     align-content: center;
 }
 #space-craft {
-    background-image: url("Star_Trek_Spaceship.png");
+    background-image: url("images/Star_Trek_Spaceship.png");
     background-position: center;
     background-size: 100%;
     color: red;
@@ -164,5 +164,5 @@ body{
     line-height: 20px;
     height: 50px;
     width: 80px;
-    margin: 250px 0 0 550px;
+    margin: 100px 0 0 550px;
   }

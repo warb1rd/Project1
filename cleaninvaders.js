@@ -25,7 +25,7 @@
     var $invisibleMarker2 = $(".invisible-marker2");
     var $gameOver = $("#gameOver");
     var score = 0;
-    // var theScore =  $score.text(score); 
+    var theScore =  $score.text(score); 
 
     var enemyMovement;   
     var movement;
@@ -51,9 +51,10 @@
                         $invisibleMarker2.css("color","red");                 
                         
                         // show a button saying player 2, fire.
-                        } else {
-                            game.currentPlayer = game.players[0]
                         }
+                        // } else {
+                        //     game.currentPlayer = game.players[0]
+                        // }
                     },
         goButton:   function(){
                         var theName =  $nameInput.val(); 
@@ -80,7 +81,6 @@
         showGame:   function(){
                         game.currentPlayer = game.players[0];                            
 
-                        $invaders.css("marginTop","0")
                         $spaceCraft.css("marginLeft","562");
                         $spaceCraft.show(500);
                         $invaders.show(500);
@@ -99,7 +99,7 @@
                         $invaders.css("marginLeft", "+=4px")
                         if(parseInt($invaders.css("marginLeft"))>($windowWidth-275)){            
                             clearInterval(enemyMovement)
-                            enemyMovement = setInterval(game.moveDown, 15)}
+                            enemyMovement = setInterval(game.moveDown, 5)}
 
                         if(parseInt(($invaders.css("marginTop"))) > 300){
                             clearInterval(enemyMovement);
@@ -113,7 +113,7 @@
                         // console.log((parseInt($invaders.css("marginTop")) > parseInt(100)))
                         if(parseInt($invaders.css("marginTop")) > parseInt(50)){
                             clearInterval(enemyMovement);
-                            enemyMovement = setInterval(game.moveLeft, 15)}      
+                            enemyMovement = setInterval(game.moveLeft, 5)}      
                 },
 
         moveLeft:   function(){
@@ -121,7 +121,7 @@
                         if(parseInt($invaders.css("marginLeft")) < 2){
                             clearInterval(enemyMovement)
                             // console.log($invaders.css("marginLeft"))
-                            enemyMovement = setInterval(game.moveDownAgain, 15)
+                            enemyMovement = setInterval(game.moveDownAgain, 5)
                         }
                     },
 
@@ -129,7 +129,7 @@
                             $invaders.css("marginTop", "+=16px")
                             if(parseInt($invaders.css("marginTop"))>100){            
                                 clearInterval(enemyMovement)
-                                enemyMovement = setInterval(game.moveRight, 15)}
+                                enemyMovement = setInterval(game.moveRight, 5)}
                         },                                                                     
         moveCraft:  function(e){                                                        
                         if(e.keyCode == "37"){   
@@ -157,10 +157,8 @@
                                     clearInterval(movement)
                                     game.photonMoving = false;
                                     $photon.css('marginTop', '375px')                                     
-                                
                                 }
                                     game.hitInvader();  
-                                    game.scoreCard();
                                                                   
                             }    
                                 // if(parseInt($photon.css("marginTop")) < parseInt($invaders.css("marginTop")) && $photon.css("marginLeft") < $invaders.css("width")){
@@ -172,8 +170,8 @@
                                           width: $invaders.width(), height: $invaders.height()}
                         var $photonx = {x: $photon.offset().top, y: $photon.offset().left, 
                                         width: $photon.width(), height: $photon.height()}
-                        console.log($invaders.offset());
-                        console.log($invadersx.x < $photonx.x + $photonx.width);
+                        // console.log($invaders.offset());
+                        // console.log($invadersx.x < $photonx.x + $photonx.width);
 
                         if ($invadersx.x < $photonx.x + $photonx.width &&
                             $invadersx.x + $invadersx.width > $photonx.x &&
@@ -194,13 +192,15 @@
                         alert("They anhilated you! Game Over")
                         $spaceCraft.hide();
                         $photon.hide();
-                        $invaders.hide();
-                        $player2Button.show(500);
-                        $player2Button.on("click",game.showGame);
-                        if($invisibleMarker2.css("color") === "red"){
+                        $invaders.css("marginTop","0")                        
+                        console.log($invisibleMarker1.css("color"))
+                        if($invisibleMarker2.css("color") === "rgb(255, 0, 0)"){
                             game.gameOver();
-                        }else{
-                                                      
+                        }else{ 
+                            score = 0;                            
+                            $invaders.hide();
+                            $player2Button.show(500);
+                            $player2Button.on("click",game.showGame);                                
                             game.switchPlayer();
                         }
                         // add game over window
@@ -209,21 +209,35 @@
 
         scoreCard:  function(){                   
                         if($scorePlayer1.text() === ", score"){
-                            console.log($scorePlayer1.text())
-                            $scorePlayer1.text($score.text(score));
+                            console.log($scorePlayer1.text(score));
 
                             // console.log('You typed');
                             // console.log(theName);
+                        } else{
+                            console.log($scorePlayer2.text(score))
+                        }
+                    },
+        
+        winner:     function(){
+                        $gameOver.show(1000);
+             
+                        if(parseInt($scorePlayer1.text())>parseInt($scorePlayer1.text())){                                  // higher scored player won.                
+                            $gameOver.text($player1Name.text() + " has saved the planet!")
+                        }else{
+                            $gameOver.text($player2Name.text() + " has saved the planet!")                        
                         }
                     },
         
         gameOver:   function(){
                         console.log("Game Over")
+                        $invaders.hide();                        
                         $openingImage.show(500);
-                        $gameOver.show(1000);
+                        $gameOver.text("")
+                        game.winner();
+                        $invaders.css("marginTop","0")                        
                         
-                        // higher scored player won.
                     }
+
     
     }
 
@@ -234,7 +248,7 @@
 
     $okBtn.on("click", game.goButton);
 
-    $photon.css({'marginTop': '370px', 'marginLeft': '600px'})
+    $photon.css({'marginTop': '390px', 'marginLeft': '600px'})
     // $spaceCraft.css({'marginTop': '10px', 'marginLeft': '50px'})
 
 
