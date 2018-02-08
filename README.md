@@ -1,5 +1,5 @@
 # Battle at the binary stars 
----
+
 #### 'Supēsu Inbēdā' is a Japanese arcade video game created by Tomohiro Nishikado and released in 1978. 
      
 ---
@@ -57,6 +57,8 @@ Plans are:
 * To finish the game with each row of aliens worth different points. 
 * Exploding aliens
 * Add sounds.
+* To add new levels where aliens speed up more. 
+* Add different ships for different players and levels. 
 
 
 

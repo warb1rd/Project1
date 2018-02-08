@@ -202,10 +202,8 @@
         stopGame:   function(){
                         game.scoreCard();
                         clearInterval(movement)
-                        alert("They anhilated you! Game Over")
                         $spaceCraft.hide();
                         $invaders.css("marginTop","0")                        
-                        console.log($invisibleMarker1.css("color"))
                         if($invisibleMarker2.css("color") === "rgb(255, 0, 0)"){
                             game.gameOver();
                         }else{ 
@@ -214,9 +212,7 @@
                             $player2Button.show(500);
                             $player2Button.on("click",game.showGame);                                
                             game.switchPlayer();
-                        }
-                        // add game over window
-                        // add who won with score
+                            }
                     },
 
         scoreCard:  function(){                   
@@ -233,7 +229,7 @@
         winner:     function(){
                         $gameOver.show(1000);
              
-                        if(parseInt($scorePlayer1.text())>parseInt($scorePlayer1.text())){                                  // higher scored player won.                
+                        if(parseInt($scorePlayer1.text())>parseInt($scorePlayer2.text())){                                  // higher scored player won.                
                             $gameOver.text($player1Name.text() + " has saved the planet!")
                         }else{
                             $gameOver.text($player2Name.text() + " has saved the planet!")                        
