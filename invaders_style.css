@@ -3,7 +3,7 @@ body{
 }
 
 #opening-image {
-    background-image: url("images/space-invaders-logo.png");
+    background-image: url("./Images/space-invaders-logo.png");
     background-repeat: no-repeat;
     margin: 0 0 0 50px;
     background-size: 100%;
@@ -12,7 +12,7 @@ body{
     height: 270px;
 }
 .mother-ship {
-    background-image: url("images/invader1.png"); 
+    background-image: url("./Images/invader1.png"); 
     background-position: center;
     background-size: 200%;
     background-repeat: no-repeat;   
