@@ -3,7 +3,7 @@ body{
 }
 
 #opening-image {
-    background-image: url("./Images/space-invaders-logo.png");
+    background-image: url("././Images/space-invaders-logo.png");
     background-repeat: no-repeat;
     margin: 0 0 0 50px;
     background-size: 100%;
@@ -28,7 +28,7 @@ body{
 }
 
 #space{
-    background-image: url("images/Background_space.png");
+    background-image: url("./Images/Background_space.png");
     background-repeat: no-repeat;
     background-size: 100%; 
     width: 95%;
@@ -43,7 +43,7 @@ body{
     align-content: center;
 }
 #space-craft {
-    background-image: url("images/Star_Trek_Spaceship.png");
+    background-image: url("./Images/Star_Trek_Spaceship.png");
     background-position: center;
     background-size: 100%;
     color: red;
