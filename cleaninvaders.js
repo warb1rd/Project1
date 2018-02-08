@@ -233,7 +233,7 @@
         
         winner:     function(){
                         $gameOver.show(1000);
-                        if(score < 1000){
+                        if(score < 5000){
                             $gameOver.text("They've anhilated you!!") 
                         }else{
                             if(parseInt($scorePlayer1.text())>parseInt($scorePlayer2.text())){                                  // higher scored player won.                
