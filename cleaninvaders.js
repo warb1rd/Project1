@@ -126,7 +126,8 @@
                             if(parseInt($invaders.css("marginTop"))>100){            
                                 clearInterval(enemyMovement)
                                 enemyMovement = setInterval(game.moveRight, 5)}
-                        },                                                                     
+                        }, 
+
         moveCraft:  function(e){                                                                            // When keyboard arrows are pressed, craft moves.                               
                         if(e.keyCode == "37"){   
                             console.log("move craft left")
@@ -207,8 +208,8 @@
                             game.gameOver();
                         }else{ 
                             score = 0;                            
-                            $invaders.hide(5000);
-                            $player2Button.show(1000);
+                            $invaders.hide(3000);
+                            $player2Button.show(500);
                             $player2Button.on("click",game.showGame);                                
                             game.switchPlayer();
                             }
@@ -217,21 +218,32 @@
         scoreCard:  function(){                   
                         if($scorePlayer1.text() === ", score"){
                             console.log($scorePlayer1.text(score));
-
+                            if(score < 1000){
+                                alert("They killed you!")
+                            }
                             // console.log('You typed');
                             // console.log(theName);
                         } else{
+                            if(score < 1000){
+                                alert("They killed you!")
+                            }
                             console.log($scorePlayer2.text(score))
                         }
                     },
         
         winner:     function(){
                         $gameOver.show(1000);
-             
-                        if(parseInt($scorePlayer1.text())>parseInt($scorePlayer2.text())){                                  // higher scored player won.                
-                            $gameOver.text($player1Name.text() + " has saved the planet!")
+                        if(score < 1000){
+                            $gameOver.text("They've anhilated you!!") 
                         }else{
-                            $gameOver.text($player2Name.text() + " has saved the planet!")                        
+                            if(parseInt($scorePlayer1.text())>parseInt($scorePlayer2.text())){                                  // higher scored player won.                
+                                $gameOver.text($player1Name.text() + " has saved the planet!")
+                            }else if
+                                (parseInt($scorePlayer2.text())>parseInt($scorePlayer1.text())){                                  // higher scored player won.                                            
+                                $gameOver.text($player2Name.text() + " has saved the planet!")                        
+                            }else{
+                            $gameOver.text("Both of you have saved the planet!")                        
+                        }
                         }
                     },
         
