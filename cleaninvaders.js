@@ -62,13 +62,13 @@
                             $player1Name.text(theName);
                             // console.log('You typed');
                             // console.log(theName);
-                            $nameInput.attr("placeholder","Who's Player-2 ?");                                          // change the placeholder to "who's player-2 ?"
+                            $nameInput.attr("placeholder","Who's Player-2 ?");                              // change the placeholder to "who's player-2 ?"
                         }else{
                             $player2Name.text(theName);
                             console.log(theName);                        
                         }
                         $nameInput.val("")
-                        function hideInput(){                                                                           // hide the input divs after players enter names.
+                        function hideInput(){                                                               // hide the input divs after players enter names.
                             $(this).parent().hide(1000);
                             $startButton.show(1000);
                             $openingImage.hide(1000);    
@@ -142,16 +142,15 @@
                         
                         if(e.keyCode == "32"){
                             console.log('fire!')
-                            var $bullet = $('<div>').addClass('bullet').css({
-                                top: $spaceCraft.offset().top,
+                            var $bullet = $('<div>').addClass('bullet').css({                               // Creates a new bullet each time spacebar is hit
+                                top: $spaceCraft.offset().top,                                              // The new bullet(s) are at the same position as the space craft
                                 left: $spaceCraft.offset().left
-                    
                             })
-                            $('#space').append($bullet)                
+                            $('#space').append($bullet)                                                     // New bullet is appended into the space div.
                             var bulletMovement = setInterval(function() {
                                 $bullet.css("top", "-=2px")
-                                if($bullet.offset().top <= 0){
-                                    $bullet.remove()
+                                if($bullet.offset().top <= 0){                                              
+                                    $bullet.remove()                                                        // Once bullet reaches top of the screen, the div is removed
                                     clearInterval(bulletMovement)
                                 } else {
                                     game.hitInvader($bullet);  
@@ -208,8 +207,8 @@
                             game.gameOver();
                         }else{ 
                             score = 0;                            
-                            $invaders.hide();
-                            $player2Button.show(500);
+                            $invaders.hide(5000);
+                            $player2Button.show(1000);
                             $player2Button.on("click",game.showGame);                                
                             game.switchPlayer();
                             }
@@ -239,16 +238,12 @@
         gameOver:   function(){
                         console.log("Game Over")
                         $invaders.hide();
-                        
                         $openingImage.show(500);
                         $gameOver.text("")
                         game.winner();
-                        $invaders.css("marginTop","0")                        
-                        
+                        $invaders.css("marginTop","0")                           
                     }
-
-    
-    }
+        }
 
 
     window.addEventListener("keydown", game.moveCraft);
