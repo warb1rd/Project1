@@ -22,20 +22,41 @@ However, you will be rewarded with some rare metals if you score more than the o
 * CSS
 * JavaScript
 * jQuery
+* Photoshop CS6
 
 The entire game was written in HTML and designed with CSS and animated in JavaScript using jQuery.
 
 -
-####Design and approach
-I used old school notebook and pens to illustrate my game design from start to finish which can be found [here](google.com).
+####Game architecture
+I used old school notebook and pens to illustrate my game design from start to finish. Some of the concepts can be found [here](google.com).
+
+I broke the game into enemy and friendly and added features for each category. 
+
+ie. Enemy needs to move left, right and down. Defending space craft needs to fire photons at the enemy and be able to move left, right on player key downs etc
+
+I kept the code extremely simple and used only concepts known to me and those that I could figure out easily using the great big internet.
 
 -
 ####User experience
+This game is designed to be played quickly. Each player takes less than 5 min to complete. As a player, that keeps my attention.
 
 -
 ####References
-* Background image = hand drawn by myself.
+* Background image = hand drawn.
+* Space-craft image = drawn using photoshop.
 * [Space Invaders logo](http://www.classicgaming.cc/classics/space-invaders/images/space-invaders-logo.png)
+* [Alien invader](https://www.destructoid.com//ul/478638-h1.jpg')
+
+-
+####Dream Works
+Plans are:
+ 
+* To make the aliens fire at the players. 
+* To finish the game with each row of aliens worth different points. 
+* Exploding aliens
+* Add sounds.
+
+
 
  
 

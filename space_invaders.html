@@ -13,6 +13,7 @@
      
 <body>
     <div id = "space">
+        <div id = "opening-image"></div>
         <div id = "grid">
             <div class = "mother-ship"></div>
             <div class = "mother-ship"></div>
@@ -78,22 +79,23 @@
 
         <div id = "opening-input">
             <input id = "input-name" type = "text" placeholder = "Who's Player-1 ?">
-            <button id = "ok-btn">Let's do this!</button>
+            <button id = "ok-btn">ok</button>
         </div>
         
-        <button id = "start-game">GO</button>
+        <button id = "start-game">f i r e !</button>
+        <button id = "player2Ready">Player-2 Ready</button>
+        <button id = "gameOver">Game Over!</button>
         
+        <div id = "photon"></div>
         <div id = "space-craft"></div>
+        <!-- create a div for opening screen with SI logo -->
     </div>
 
     <p id = "life">Lives : <span>image of craft</span></p>
-    <p id = "score">Score :</p>
-    <p id = "name-player1">Player-1 : <span id = "name1">name of player</span><span class = "score-player1">, score</span><span class = "invisible-marker">*</span></p>
-    <p id = "name-player2">Player-2 : <span id = "name2">name of player</span><span class = "score-player2">, score</span><span class = "invisible-marker">*</span></p>
-
-    <script src="invaders_js.js"></script>
-        
-   
+    <p id = "score">Score : <span id = "score-number"></span> </p>
+    <p id = "name-player1">Player-1 : <span id = "name1">name of player</span><span class = "score-player1">, score</span><span class = "invisible-marker1">*</span></p>
+    <p id = "name-player2">Player-2 : <span id = "name2">name of player</span><span class = "score-player2">, score</span><span class = "invisible-marker2">*</span></p>
+    <script src="cleaninvaders.js"></script>
 </body>
 
 </html>

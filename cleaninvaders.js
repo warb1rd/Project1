@@ -1,102 +1,4 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta http-equiv="X-UA-Compatible" content="ie=edge">
-    <link rel="stylesheet" href="invaders_style.css">
-    <link rel = "stylesheet" href="https://fonts.googleapis.com/css?family=Amatic+SC">
-    <script src="http://code.jquery.com/jquery-3.3.1.js" integrity="sha256-2Kok7MbOyxpgUVvAk/HJ2jigOSYS2auK4Pfzbm7uH60=" crossorigin="anonymous"></script>
-    
-    <title>Invaders</title>
-</head>
-     
-<body>
-    <div id = "space">
-        <div id = "opening-image"></div>
-        <div id = "grid">
-            <div class = "mother-ship"></div>
-            <div class = "mother-ship"></div>
-            <div class = "mother-ship"></div>
-            <div class = "mother-ship"></div>
-            <div class = "mother-ship"></div>
-            <div class = "mother-ship"></div>
-            <div class = "mother-ship"></div>
-            <div class = "mother-ship"></div>
-            <div class = "mother-ship"></div>
-            <div class = "mother-ship"></div>
-            <div class = "mother-ship"></div>
-            <div class = "mother-ship"></div>
-            <div class = "mother-ship"></div>
-            <div class = "mother-ship"></div>
-            <div class = "mother-ship"></div>
-            <div class = "mother-ship"></div>
-            <div class = "mother-ship"></div>
-            <div class = "mother-ship"></div>
-            <div class = "mother-ship"></div>
-            <div class = "mother-ship"></div>
-            <div class = "mother-ship"></div>
-            <div class = "mother-ship"></div>
-            <div class = "mother-ship"></div>
-            <div class = "mother-ship"></div>
-            <div class = "mother-ship"></div>
-            <div class = "mother-ship"></div>
-            <div class = "mother-ship"></div>
-            <div class = "mother-ship"></div>
-            <div class = "mother-ship"></div>
-            <div class = "mother-ship"></div>
-            <div class = "mother-ship"></div>
-            <div class = "mother-ship"></div>
-            <div class = "mother-ship"></div>
-            <div class = "mother-ship"></div>
-            <div class = "mother-ship"></div>
-            <div class = "mother-ship"></div>
-            <div class = "mother-ship"></div>
-            <div class = "mother-ship"></div>
-            <div class = "mother-ship"></div>
-            <div class = "mother-ship"></div>
-            <div class = "mother-ship"></div>
-            <div class = "mother-ship"></div>
-            <div class = "mother-ship"></div>
-            <div class = "mother-ship"></div>
-            <div class = "mother-ship"></div>
-            <div class = "mother-ship"></div>
-            <div class = "mother-ship"></div>
-            <div class = "mother-ship"></div>
-            <div class = "mother-ship"></div>
-            <div class = "mother-ship"></div>
-            <div class = "mother-ship"></div>
-            <div class = "mother-ship"></div>
-            <div class = "mother-ship"></div>
-            <div class = "mother-ship"></div>
-            <div class = "mother-ship"></div>
-            <div class = "mother-ship"></div>
-            <div class = "mother-ship"></div>
-            <div class = "mother-ship"></div>
-            <div class = "mother-ship"></div>
-            <div class = "mother-ship"></div>   
-        </div>
 
-        <div id = "opening-input">
-            <input id = "input-name" type = "text" placeholder = "Who's Player-1 ?">
-            <button id = "ok-btn">ok</button>
-        </div>
-        
-        <button id = "start-game">f i r e !</button>
-        <button id = "player2Ready">Player-2 Ready</button>
-        <button id = "gameOver">Game Over!</button>
-        
-        <div id = "photon"></div>
-        <div id = "space-craft"></div>
-        <!-- create a div for opening screen with SI logo -->
-    </div>
-
-    <p id = "life">Lives : <span>image of craft</span></p>
-    <p id = "score">Score : <span id = "score-number"></span> </p>
-    <p id = "name-player1">Player-1 : <span id = "name1">name of player</span><span class = "score-player1">, score</span><span class = "invisible-marker1">*</span></p>
-    <p id = "name-player2">Player-2 : <span id = "name2">name of player</span><span class = "score-player2">, score</span><span class = "invisible-marker2">*</span></p>
-
-    <script>
     
     // $player1Name.val(player1Name);
 
@@ -306,8 +208,8 @@
                     },
 
         scoreCard:  function(){                   
-                        if($scorePlayer1.text() === ",score"){
-                            // console.log($scorePlayer1)
+                        if($scorePlayer1.text() === ", score"){
+                            console.log($scorePlayer1.text())
                             $scorePlayer1.text($score.text(score));
 
                             // console.log('You typed');
@@ -340,9 +242,3 @@
             
     // create a variable called moving where if photon is already moving, don't run the move function again till photon reaches border.
 
-    </script>
-        
-   
-</body>
-
-</html>
