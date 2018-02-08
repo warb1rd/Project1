@@ -8,7 +8,7 @@
     // engage game 
 
 
-    var $player1Name = $("#name1");
+    var $player1Name = $("#name1");                                                                         //Declaring all the variables at the beginning 
     var $player2Name = $("#name2");
     var $nameInput = $("#input-name");
     var $okBtn = $("#ok-btn");
@@ -23,25 +23,25 @@
     var $invisibleMarker1 = $(".invisible-marker1");
     var $invisibleMarker2 = $(".invisible-marker2");
     var $gameOver = $("#gameOver");
-    var score = 0;
-    var theScore =  $score.text(score); 
+    var score = 0;                                                                                           // Initializing score to 0 to begin with.
+    var theScore = $score.text(score); 
 
     var enemyMovement;   
     var movement;
 
-    $startButton.hide();
+    $startButton.hide();                                                                                    //hiding all the buttons which show up once game begins
     $spaceCraft.hide();
     $invaders.hide();
     $player2Button.hide();
     $gameOver.hide();
 
 
-    var game = {
+    var game = {                                                                                            // Added the functions in an object. 
         players:    [{name:$player1Name}, {name:$player2Name}],
         photonMoving: false,
         currentPlayer: null,
 
-        switchPlayer: function(){
+        switchPlayer: function(){                                                                           // If current player is 0, switch to 1 and add mark on the now current player
                         if(game.currentPlayer === game.players[0] && 
                         $invisibleMarker1.css("color","red")){              
                         game.currentPlayer = game.players[1]
@@ -54,7 +54,7 @@
                         //     game.currentPlayer = game.players[0]
                         // }
                     },
-        goButton:   function(){
+        goButton:   function(){                                                                             // Adds the input names to the bottom of screen
                         var theName =  $nameInput.val(); 
                         if($player1Name.text() === "name of player"){
                             // console.log($player1Name)
@@ -77,7 +77,7 @@
                     },
 
         showGame:   function(){
-                        game.currentPlayer = game.players[0];                            
+                        game.currentPlayer = game.players[0];                                               // starts the game and shows the invaders and craft.
 
                         $spaceCraft.css("marginLeft","562");
                         $spaceCraft.show(500);
@@ -89,7 +89,7 @@
                         enemyMovement = setInterval(game.moveRight,15);
                     },
 
-        moveRight:  function(){ 
+        moveRight:  function(){                                                                             // Moving the invaders right, left and down.
                         var $windowWidth = $(window).width();
                         // console.log(enemyMovement)
                         $invaders.css("marginLeft", "+=4px")
@@ -127,7 +127,7 @@
                                 clearInterval(enemyMovement)
                                 enemyMovement = setInterval(game.moveRight, 5)}
                         },                                                                     
-        moveCraft:  function(e){                                                        
+        moveCraft:  function(e){                                                                            // When keyboard arrows are pressed, craft moves.                               
                         if(e.keyCode == "37"){   
                             console.log("move craft left")
                                 $spaceCraft.css("left", "-=1%");
