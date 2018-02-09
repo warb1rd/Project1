@@ -40,6 +40,9 @@ The entire game was written in HTML and designed with CSS and animated in JavaSc
 #### Game architecture
 ---
 I used old school notebook and pens to illustrate my game design from start to finish. My working process:
+![White boarding](Images/Drawing1.jpg)
+![White boarding](Images/Drawing2.jpg)
+![White boarding](Images/Drawing3.jpg)
 
 
 I broke the game into enemy and friendly and added features for each category. 
