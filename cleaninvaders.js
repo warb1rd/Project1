@@ -8,6 +8,11 @@
     // engage game 
 
 
+    var $motherShips = $(".mother-ship")
+    var bulletWidth = 5;
+    var bulletHeight = 5;
+
+    var motherShipWidth = $motherShips.eq(0).width();
     var $player1Name = $("#name1");                                                                         //Declaring all the variables at the beginning 
     var $player2Name = $("#name2");
     var $nameInput = $("#input-name");
@@ -25,6 +30,7 @@
     var $gameOver = $("#gameOver");
     var score = 0;                                                                                          // Initializing score to 0 to begin with.
     var theScore = $score.text(score); 
+    var invadersMovingTime = 10;
 
     var enemyMovement;   
     var movement;
@@ -59,12 +65,12 @@
                         if($player1Name.text() === "name of player"){
                             // console.log($player1Name)
                             $startButton.on("click",game.showGame)
-                            $player1Name.text(theName);
+                            $player1Name.text(theName + " ");
                             // console.log('You typed');
                             // console.log(theName);
                             $nameInput.attr("placeholder","Who's Player-2 ?");                              // change the placeholder to "who's player-2 ?"
                         }else{
-                            $player2Name.text(theName);
+                            $player2Name.text(theName + " ");
                             console.log(theName);                        
                         }
                         $nameInput.val("")
@@ -95,7 +101,7 @@
                         $invaders.css("marginLeft", "+=4px")
                         if(parseInt($invaders.css("marginLeft"))>($windowWidth-275)){            
                             clearInterval(enemyMovement)
-                            enemyMovement = setInterval(game.moveDown, 5)}
+                            enemyMovement = setInterval(game.moveDown, invadersMovingTime)}
 
                         if(parseInt(($invaders.css("marginTop"))) > 300){
                             clearInterval(enemyMovement);
@@ -109,7 +115,7 @@
                         // console.log((parseInt($invaders.css("marginTop")) > parseInt(100)))
                         if(parseInt($invaders.css("marginTop")) > parseInt(50)){
                             clearInterval(enemyMovement);
-                            enemyMovement = setInterval(game.moveLeft, 5)}      
+                            enemyMovement = setInterval(game.moveLeft, invadersMovingTime)}      
                 },
 
         moveLeft:   function(){
@@ -117,7 +123,7 @@
                         if(parseInt($invaders.css("marginLeft")) < 2){
                             clearInterval(enemyMovement)
                             // console.log($invaders.css("marginLeft"))
-                            enemyMovement = setInterval(game.moveDownAgain, 5)
+                            enemyMovement = setInterval(game.moveDownAgain, invadersMovingTime)
                         }
                     },
 
@@ -125,7 +131,7 @@
                             $invaders.css("marginTop", "+=16px")
                             if(parseInt($invaders.css("marginTop"))>100){            
                                 clearInterval(enemyMovement)
-                                enemyMovement = setInterval(game.moveRight, 5)}
+                                enemyMovement = setInterval(game.moveRight, invadersMovingTime)}
                         }, 
 
         moveCraft:  function(e){                                                                            // When keyboard arrows are pressed, craft moves.                               
@@ -180,7 +186,7 @@
                         
         hitInvader: function(bullet){
                         var $invadersx = {x: $invaders.offset().top, y: $invaders.offset().left,                // if position of photon = position of invader div, explode(hide)
-                                          width: $invaders.width(), height: $invaders.height()}
+                                            width: $invaders.width(), height: $invaders.height()}
                         var bulletx = {x: bullet.offset().top, y: bullet.offset().left, 
                                         width: bullet.width(), height: bullet.height()}
                         // console.log($invaders.offset());
@@ -198,7 +204,35 @@
                                 $invaders.css("background-color", "transparent")
                         }                                                                                             
                     },
+                            // hitInvader: function(bullet){
+                            //     /////////////////////////////
+                            //     var bulletOffset = bullet.offset()
 
+                            //     for(var i = 0; i < 60; i++){
+                            //         var ll = $motherShips.eq(i)
+                            //         var llOffset = ll.offset()
+
+                            //         var llx = {x: llOffset.top, y:llOffset.left,                // if position of photon = position of invader div, explode(hide)
+                            //                         width: motherShipWidth, height:5}
+                            //         var bulletx = {x: bulletOffset.top, y: bulletOffset.left, 
+                            //                         width: bulletWidth, height: bulletHeight}
+                        
+            
+                            //         if (llx.x < bulletx.x + bulletx.width &&
+                            //             llx.x + llx.width > bulletx.x &&
+                            //             llx.y < bulletx.y + bulletx.height &&
+                            //             llx.height + llx.y > bulletx.y){
+                            //             ll.css("background-color", "red")
+                            //             score = score + 10;
+                            //             $score.text(score);
+                            //             ll.hide();
+                            //             console.log("collision")
+                            //         } else {
+                            //                 ll.css("background-color", "transparent")
+                            //         }
+                            //  } ////////////////////////
+                            // },
+                
         stopGame:   function(){
                         game.scoreCard();
                         clearInterval(movement)
