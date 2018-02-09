@@ -148,6 +148,9 @@
         photon:     function(e){                                                                            // When space bar is pressed, photons fire.
                         
                         if(e.keyCode == "32"){
+                            var audi = new Audio('shoot.wav')
+                            audi.volume = .1;
+                                audi.play();
                             console.log('fire!')
                             var $bullet = $('<div>').addClass('bullet').css({                               // Creates a new bullet each time spacebar is hit
                                 top: $spaceCraft.offset().top,                                              // The new bullet(s) are at the same position as the space craft
