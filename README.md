@@ -1,7 +1,7 @@
 # Battle at the binary stars 
 
 #### 'Supēsu Inbēdā' is a Japanese arcade video game created by Tomohiro Nishikado and released in 1978. 
-[PLAY GAME](https://warb1rd.github.io/Project1/)
+[PLAY GAME](https://warb1rd.github.io/Space_Invaders/)
 
 ![Original Game Flyer](Images/Space_Invaders_flyer_1978.jpg)
 
