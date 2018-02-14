@@ -8,6 +8,11 @@
     // engage game 
 
 
+    var $motherShips = $(".mother-ship")
+    var bulletWidth = 5;
+    var bulletHeight = 5;
+
+    var motherShipWidth = $motherShips.eq(0).width();
     var $player1Name = $("#name1");                                                                         //Declaring all the variables at the beginning 
     var $player2Name = $("#name2");
     var $nameInput = $("#input-name");
@@ -25,6 +30,7 @@
     var $gameOver = $("#gameOver");
     var score = 0;                                                                                          // Initializing score to 0 to begin with.
     var theScore = $score.text(score); 
+    var invadersMovingTime = 10;
 
     var enemyMovement;   
     var movement;
@@ -59,16 +65,16 @@
                         if($player1Name.text() === "name of player"){
                             // console.log($player1Name)
                             $startButton.on("click",game.showGame)
-                            $player1Name.text(theName);
+                            $player1Name.text(theName + " ");
                             // console.log('You typed');
                             // console.log(theName);
-                            $nameInput.attr("placeholder","Who's Player-2 ?");                                          // change the placeholder to "who's player-2 ?"
+                            $nameInput.attr("placeholder","Who's Player-2 ?");                              // change the placeholder to "who's player-2 ?"
                         }else{
-                            $player2Name.text(theName);
+                            $player2Name.text(theName + " ");
                             console.log(theName);                        
                         }
                         $nameInput.val("")
-                        function hideInput(){                                                                           // hide the input divs after players enter names.
+                        function hideInput(){                                                               // hide the input divs after players enter names.
                             $(this).parent().hide(1000);
                             $startButton.show(1000);
                             $openingImage.hide(1000);    
@@ -95,7 +101,7 @@
                         $invaders.css("marginLeft", "+=4px")
                         if(parseInt($invaders.css("marginLeft"))>($windowWidth-275)){            
                             clearInterval(enemyMovement)
-                            enemyMovement = setInterval(game.moveDown, 5)}
+                            enemyMovement = setInterval(game.moveDown, invadersMovingTime)}
 
                         if(parseInt(($invaders.css("marginTop"))) > 300){
                             clearInterval(enemyMovement);
@@ -109,7 +115,7 @@
                         // console.log((parseInt($invaders.css("marginTop")) > parseInt(100)))
                         if(parseInt($invaders.css("marginTop")) > parseInt(50)){
                             clearInterval(enemyMovement);
-                            enemyMovement = setInterval(game.moveLeft, 5)}      
+                            enemyMovement = setInterval(game.moveLeft, invadersMovingTime)}      
                 },
 
         moveLeft:   function(){
@@ -117,7 +123,7 @@
                         if(parseInt($invaders.css("marginLeft")) < 2){
                             clearInterval(enemyMovement)
                             // console.log($invaders.css("marginLeft"))
-                            enemyMovement = setInterval(game.moveDownAgain, 5)
+                            enemyMovement = setInterval(game.moveDownAgain, invadersMovingTime)
                         }
                     },
 
@@ -125,8 +131,9 @@
                             $invaders.css("marginTop", "+=16px")
                             if(parseInt($invaders.css("marginTop"))>100){            
                                 clearInterval(enemyMovement)
-                                enemyMovement = setInterval(game.moveRight, 5)}
-                        },                                                                     
+                                enemyMovement = setInterval(game.moveRight, invadersMovingTime)}
+                        }, 
+
         moveCraft:  function(e){                                                                            // When keyboard arrows are pressed, craft moves.                               
                         if(e.keyCode == "37"){   
                             console.log("move craft left")
@@ -141,17 +148,19 @@
         photon:     function(e){                                                                            // When space bar is pressed, photons fire.
                         
                         if(e.keyCode == "32"){
+                            var audi = new Audio('shoot.wav')
+                            audi.volume = .1;
+                                audi.play();
                             console.log('fire!')
-                            var $bullet = $('<div>').addClass('bullet').css({
-                                top: $spaceCraft.offset().top,
+                            var $bullet = $('<div>').addClass('bullet').css({                               // Creates a new bullet each time spacebar is hit
+                                top: $spaceCraft.offset().top,                                              // The new bullet(s) are at the same position as the space craft
                                 left: $spaceCraft.offset().left
-                    
                             })
-                            $('#space').append($bullet)                
+                            $('#space').append($bullet)                                                     // New bullet is appended into the space div.
                             var bulletMovement = setInterval(function() {
                                 $bullet.css("top", "-=2px")
-                                if($bullet.offset().top <= 0){
-                                    $bullet.remove()
+                                if($bullet.offset().top <= 0){                                              
+                                    $bullet.remove()                                                        // Once bullet reaches top of the screen, the div is removed
                                     clearInterval(bulletMovement)
                                 } else {
                                     game.hitInvader($bullet);  
@@ -180,7 +189,7 @@
                         
         hitInvader: function(bullet){
                         var $invadersx = {x: $invaders.offset().top, y: $invaders.offset().left,                // if position of photon = position of invader div, explode(hide)
-                                          width: $invaders.width(), height: $invaders.height()}
+                                            width: $invaders.width(), height: $invaders.height()}
                         var bulletx = {x: bullet.offset().top, y: bullet.offset().left, 
                                         width: bullet.width(), height: bullet.height()}
                         // console.log($invaders.offset());
@@ -198,7 +207,35 @@
                                 $invaders.css("background-color", "transparent")
                         }                                                                                             
                     },
+                            // hitInvader: function(bullet){
+                            //     /////////////////////////////
+                            //     var bulletOffset = bullet.offset()
 
+                            //     for(var i = 0; i < 60; i++){
+                            //         var ll = $motherShips.eq(i)
+                            //         var llOffset = ll.offset()
+
+                            //         var llx = {x: llOffset.top, y:llOffset.left,                // if position of photon = position of invader div, explode(hide)
+                            //                         width: motherShipWidth, height:5}
+                            //         var bulletx = {x: bulletOffset.top, y: bulletOffset.left, 
+                            //                         width: bulletWidth, height: bulletHeight}
+                        
+            
+                            //         if (llx.x < bulletx.x + bulletx.width &&
+                            //             llx.x + llx.width > bulletx.x &&
+                            //             llx.y < bulletx.y + bulletx.height &&
+                            //             llx.height + llx.y > bulletx.y){
+                            //             ll.css("background-color", "red")
+                            //             score = score + 10;
+                            //             $score.text(score);
+                            //             ll.hide();
+                            //             console.log("collision")
+                            //         } else {
+                            //                 ll.css("background-color", "transparent")
+                            //         }
+                            //  } ////////////////////////
+                            // },
+                
         stopGame:   function(){
                         game.scoreCard();
                         clearInterval(movement)
@@ -208,7 +245,7 @@
                             game.gameOver();
                         }else{ 
                             score = 0;                            
-                            $invaders.hide();
+                            $invaders.hide(3000);
                             $player2Button.show(500);
                             $player2Button.on("click",game.showGame);                                
                             game.switchPlayer();
@@ -218,37 +255,44 @@
         scoreCard:  function(){                   
                         if($scorePlayer1.text() === ", score"){
                             console.log($scorePlayer1.text(score));
-
+                            if(score < 1000){
+                                alert("They killed you!")
+                            }
                             // console.log('You typed');
                             // console.log(theName);
                         } else{
+                            if(score < 1000){
+                                alert("They killed you!")
+                            }
                             console.log($scorePlayer2.text(score))
                         }
                     },
         
         winner:     function(){
                         $gameOver.show(1000);
-             
-                        if(parseInt($scorePlayer1.text())>parseInt($scorePlayer2.text())){                                  // higher scored player won.                
-                            $gameOver.text($player1Name.text() + " has saved the planet!")
+                        if(score < 5000){
+                            $gameOver.text("They've anhilated you!!") 
                         }else{
-                            $gameOver.text($player2Name.text() + " has saved the planet!")                        
+                            if(parseInt($scorePlayer1.text())>parseInt($scorePlayer2.text())){                                  // higher scored player won.                
+                                $gameOver.text($player1Name.text() + " has saved the planet!")
+                            }else if
+                                (parseInt($scorePlayer2.text())>parseInt($scorePlayer1.text())){                                  // higher scored player won.                                            
+                                $gameOver.text($player2Name.text() + " has saved the planet!")                        
+                            }else{
+                            $gameOver.text("Both of you have saved the planet!")                        
+                        }
                         }
                     },
         
         gameOver:   function(){
                         console.log("Game Over")
                         $invaders.hide();
-                        
                         $openingImage.show(500);
                         $gameOver.text("")
                         game.winner();
-                        $invaders.css("marginTop","0")                        
-                        
+                        $invaders.css("marginTop","0")                           
                     }
-
-    
-    }
+        }
 
 
     window.addEventListener("keydown", game.moveCraft);
