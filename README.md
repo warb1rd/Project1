@@ -1,6 +1,7 @@
 # Battle at the binary stars 
 
 #### 'Supēsu Inbēdā' is a Japanese arcade video game created by Tomohiro Nishikado and released in 1978. 
+
 [PLAY GAME](https://warb1rd.github.io/Space_Invaders/)
 
 ![Original Game Flyer](Images/Space_Invaders_flyer_1978.jpg)
@@ -44,7 +45,6 @@ I used old school notebook and pens to illustrate my game design from start to f
 ![White boarding](Images/Drawing2.jpg)
 ![White boarding](Images/Drawing3.jpg)
 
-
 I broke the game into enemy and friendly and added features for each category. 
 
 ie. Enemy needs to move left, right and down. Defending space craft needs to fire photons at the enemy and be able to move left, right on player key downs etc
@@ -64,7 +64,6 @@ Plans are:
 * To make the aliens fire at the players. 
 * To finish the game with each row of aliens worth different points. 
 * Exploding aliens
-* Add sounds.
 * To add new levels where aliens speed up more. 
 * Add different ships for different players and levels. 
 
