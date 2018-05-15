@@ -8,7 +8,7 @@
     // engage game 
 
 
-    var $motherShips = $(".mother-ship")
+    var $motherShips = $(".mother-ship");
     var bulletWidth = 5;
     var bulletHeight = 5;
 
@@ -201,37 +201,102 @@
         //                 }                                                                                             
         //             },
                             hitInvader: function(bullet){
+                                // USE FILTER??
                                 
                                 var bulletOffset = bullet.offset()
+                                $motherShips.each(function(i, ship) {
+                                    
+                                    var $ship = $(ship)
+                                    var shipOffset = $ship.offset()
+                                    var shipCoordinates = {
+                                        x: shipOffset.left,
+                                        y: shipOffset.top,
+                                        width: motherShipWidth,
+                                        height: 5
+                                    }
 
-                                for(var i = 0; i < 60; i++){
-                                    var ll = $motherShips.eq(i)
-                                    var llOffset = ll.offset()                           //coordinates of ll
+                                    var bulletCoordinates = {
+                                        x: bulletOffset.left,
+                                        y: bulletOffset.top, 
+                                        width: bulletWidth,
+                                        height: bulletHeight
+                                    }
+                                    
+                                    // if (shipCoordinates.x < bulletCoordinates.x + bulletCoordinates.width &&
+                                    //     shipCoordinates.x + shipCoordinates.width > bulletCoordinates.x &&
+                                    //     shipCoordinates.y < bulletCoordinates.y + bulletCoordinates.height &&
+                                    //     shipCoordinates.height + shipCoordinates.y > bulletCoordinates.y) {
+                                    if(bulletCoordinates.x + bulletCoordinates.width > shipCoordinates.x && bulletCoordinates.x < shipCoordinates.x + shipCoordinates.width && bulletCoordinates.y + bulletCoordinates.height > shipCoordinates.y && bulletCoordinates.y < shipCoordinates.y + shipCoordinates.height) {
+                                        console.log("hit")
+                                        score = score + 10;
+                                        $score.text(score); 
+                                        $ship.hide()
+                                        bullet.remove()
+                                    }
+                                })
+                               
+                                // for(let i = 0; i < $motherShips.length; i++){
+                                //     (function() {
+                                //     var ll = $motherShips.eq(i)
+                                //     var llOffset = ll.offset()                                              //coordinates of ll
+                                //         // debugger
+                                //     var llx = {x: llOffset.top, y: llOffset.left,               
+                                //                     width: motherShipWidth, height:5}
+                                //     var bulletx = {x: bulletOffset.top, y: bulletOffset.left, 
+                                //                     width: bulletWidth, height: bulletHeight}
+                                   
+                                //     if (llx.x < bulletx.x + bulletx.width &&
+                                //         llx.x + llx.width > bulletx.x &&
+                                //         llx.y < bulletx.y + bulletx.height &&
+                                //         llx.height + llx.y > bulletx.y){
+                                //         ll.css("background-color", "red")
+                                //         score = score + 10;
+                                //         $score.text(score);
+                                        
+                                //         console.log('i: ' + i);
+                                //         console.log(llx.x + "<" + (bulletx.x + bulletx.width) + "&&" + 
+                                //             (llx.x + llx.width) + ">" + bulletx.x  + "&&"
+                                //             + llx.y + "<" + (bulletx.y + bulletx.height) + "&&"
+                                //             + (llx.height + llx.y) + ">" + bulletx.y);
+                                                                            
+                                //         ll.hide();                                        
+                                //         console.log("collision")                                        
+                                //     } 
+                                    
+                                //      if(score >= 600){
+                                //          ll.show();
+                                //     }
+                                //     })(i);
+                                    
 
-                                    var llx = {x: llOffset.top, y:llOffset.left,               
-                                                    width: motherShipWidth, height:5}
-                                    var bulletx = {x: bulletOffset.top, y: bulletOffset.left, 
-                                                    width: bulletWidth, height: bulletHeight}
+
+                                //     // var ll = $motherShips.eq(i)
+                                //     // var llOffset = ll.offset()                           //coordinates of ll
+
+                                //     // var llx = {x: llOffset.top, y: llOffset.left,               
+                                //     //                 width: motherShipWidth, height:5}
+                                //     // var bulletx = {x: bulletOffset.top, y: bulletOffset.left, 
+                                //     //                 width: bulletWidth, height: bulletHeight}
                         
             
-                                    if (llx.x < bulletx.x + bulletx.width &&
-                                        llx.x + llx.width > bulletx.x &&
-                                        llx.y < bulletx.y + bulletx.height &&
-                                        llx.height + llx.y > bulletx.y){
-                                        ll.css("background-color", "red")
-                                        score = score + 10;
-                                        $score.text(score);
-                                        ll.hide();
-                                        console.log("collision")
-                                    } else {
-                                            ll.css("background-color", "transparent")
-                                    }
-                                    // if(score >= 600){
-                                    //     ll.show();
-                                    // }
-                             } 
+                                //     // if (llx.x < bulletx.x + bulletx.width &&
+                                //     //     llx.x + llx.width > bulletx.x &&
+                                //     //     llx.y < bulletx.y + bulletx.height &&
+                                //     //     llx.height + llx.y > bulletx.y){
+                                //     //     ll.css("background-color", "red")
+                                //     //     score = score + 10;
+                                //     //     $score.text(score);
+                                //     //     ll.hide();
+                                //     //     console.log("collision")
+                                //     // } else {
+                                //     //         ll.css("background-color", "transparent")
+                                //     // }
+                                //     // if(score >= 600){
+                                //     //     ll.show();
+                                //     // }
+                                // } 
                             },
-                
+               
         stopGame:   function(){
                         game.scoreCard();
                         clearInterval(movement)
