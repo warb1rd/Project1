@@ -92,7 +92,7 @@
         moveRight:  function(){                                                                             // Moving the invaders right, left and down.
                         var $windowWidth = $(window).width();
                         // console.log(enemyMovement)
-                        $invaders.css("marginLeft", "+=2px")
+                        $invaders.css("marginLeft", "+=1px")
                         if(parseInt($invaders.css("marginLeft"))>($windowWidth-275)){            
                             clearInterval(enemyMovement)
                             enemyMovement = setInterval(game.moveDown, invadersMovingTime)}
@@ -105,7 +105,7 @@
                 },
 
         moveDown:   function(){
-                        $invaders.css("marginTop", "+=8px")
+                        $invaders.css("marginTop", "+=4px")
                         // console.log((parseInt($invaders.css("marginTop")) > parseInt(100)))
                         if(parseInt($invaders.css("marginTop")) > parseInt(50)){
                             clearInterval(enemyMovement);
@@ -113,7 +113,7 @@
                 },
 
         moveLeft:   function(){
-                        $invaders.css("marginLeft", "-=2px")   
+                        $invaders.css("marginLeft", "-=1px")   
                         if(parseInt($invaders.css("marginLeft")) < 2){
                             clearInterval(enemyMovement)
                             // console.log($invaders.css("marginLeft"))
@@ -122,7 +122,7 @@
                     },
 
         moveDownAgain:  function(){
-                            $invaders.css("marginTop", "+=8px")
+                            $invaders.css("marginTop", "+=4px")
                             if(parseInt($invaders.css("marginTop"))>100){            
                                 clearInterval(enemyMovement)
                                 enemyMovement = setInterval(game.moveRight, invadersMovingTime)}
@@ -160,46 +160,11 @@
                                     game.hitInvader($bullet);  
                                 }
                             }, 10)
-                            
 
-                            // if(game.photonMoving === false){
-                            //     movement = setInterval(movephoton, 10)                                
-                            // } 
-                            // function movephoton(){
-                            //     game.photonMoving = true;
-                            //     $photon.css("marginTop", "-=2px");
-                            //     if(parseInt($photon.css("marginTop")) < -100){
-                            //         // console.log($photon.css("marginTop"))
-                            //         clearInterval(movement)
-                            //         game.photonMoving = false;
-                            //         $photon.css('marginTop', '375px')                                     
-                            //     }
-                            //         game.hitInvader();  
-                                                                  
-                            // }    
-                                // if(parseInt($photon.css("marginTop")) < parseInt($invaders.css("marginTop")) && $photon.css("marginLeft") < $invaders.css("width")){
                                 }
                             },
                         
-        // hitInvader: function(bullet){
-        //                 var $invadersx = {x: $invaders.offset().top, y: $invaders.offset().left,                // if position of photon = position of invader div, explode(hide)
-        //                                   width: $invaders.width(), height: $invaders.height()}
-        //                 var bulletx = {x: bullet.offset().top, y: bullet.offset().left, 
-        //                                width: bullet.width(), height: bullet.height()}
-        //                 // console.log($invaders.offset());
-        //                 // console.log($invadersx.x < bulletx.x + bulletx.width);
-
-        //                 if ($invadersx.x < bulletx.x + bulletx.width &&
-        //                     $invadersx.x + $invadersx.width > bulletx.x &&
-        //                     $invadersx.y < bulletx.y + bulletx.height &&
-        //                     $invadersx.height + $invadersx.y > bulletx.y){
-        //                     $invaders.css("background-color", "red")
-        //                     score = score + 10;
-        //                     $score.text(score);
-        //                 } else {
-        //                         $invaders.css("background-color", "transparent")
-        //                 }                                                                                             
-        //             },
+ 
                             hitInvader: function(bullet){
                                 // USE FILTER??
                                 
@@ -222,10 +187,7 @@
                                         height: bulletHeight
                                     }
                                     
-                                    // if (shipCoordinates.x < bulletCoordinates.x + bulletCoordinates.width &&
-                                    //     shipCoordinates.x + shipCoordinates.width > bulletCoordinates.x &&
-                                    //     shipCoordinates.y < bulletCoordinates.y + bulletCoordinates.height &&
-                                    //     shipCoordinates.height + shipCoordinates.y > bulletCoordinates.y) {
+                                   
                                     if(bulletCoordinates.x + bulletCoordinates.width > shipCoordinates.x && bulletCoordinates.x < shipCoordinates.x + shipCoordinates.width && bulletCoordinates.y + bulletCoordinates.height > shipCoordinates.y && bulletCoordinates.y < shipCoordinates.y + shipCoordinates.height) {
                                         console.log("hit")
                                         score = score + 10;
@@ -235,66 +197,13 @@
                                     }
                                 })
                                
-                                // for(let i = 0; i < $motherShips.length; i++){
-                                //     (function() {
-                                //     var ll = $motherShips.eq(i)
-                                //     var llOffset = ll.offset()                                              //coordinates of ll
-                                //         // debugger
-                                //     var llx = {x: llOffset.top, y: llOffset.left,               
-                                //                     width: motherShipWidth, height:5}
-                                //     var bulletx = {x: bulletOffset.top, y: bulletOffset.left, 
-                                //                     width: bulletWidth, height: bulletHeight}
-                                   
-                                //     if (llx.x < bulletx.x + bulletx.width &&
-                                //         llx.x + llx.width > bulletx.x &&
-                                //         llx.y < bulletx.y + bulletx.height &&
-                                //         llx.height + llx.y > bulletx.y){
-                                //         ll.css("background-color", "red")
-                                //         score = score + 10;
-                                //         $score.text(score);
-                                        
-                                //         console.log('i: ' + i);
-                                //         console.log(llx.x + "<" + (bulletx.x + bulletx.width) + "&&" + 
-                                //             (llx.x + llx.width) + ">" + bulletx.x  + "&&"
-                                //             + llx.y + "<" + (bulletx.y + bulletx.height) + "&&"
-                                //             + (llx.height + llx.y) + ">" + bulletx.y);
-                                                                            
-                                //         ll.hide();                                        
-                                //         console.log("collision")                                        
-                                //     } 
+                           
                                     
-                                //      if(score >= 600){
-                                //          ll.show();
-                                //     }
-                                //     })(i);
-                                    
-
-
-                                //     // var ll = $motherShips.eq(i)
-                                //     // var llOffset = ll.offset()                           //coordinates of ll
-
-                                //     // var llx = {x: llOffset.top, y: llOffset.left,               
-                                //     //                 width: motherShipWidth, height:5}
-                                //     // var bulletx = {x: bulletOffset.top, y: bulletOffset.left, 
-                                //     //                 width: bulletWidth, height: bulletHeight}
-                        
-            
-                                //     // if (llx.x < bulletx.x + bulletx.width &&
-                                //     //     llx.x + llx.width > bulletx.x &&
-                                //     //     llx.y < bulletx.y + bulletx.height &&
-                                //     //     llx.height + llx.y > bulletx.y){
-                                //     //     ll.css("background-color", "red")
-                                //     //     score = score + 10;
-                                //     //     $score.text(score);
-                                //     //     ll.hide();
-                                //     //     console.log("collision")
-                                //     // } else {
-                                //     //         ll.css("background-color", "transparent")
-                                //     // }
-                                //     // if(score >= 600){
-                                //     //     ll.show();
-                                //     // }
-                                // } 
+                                     if(score >= 600){
+                                        game.stopGame();
+                                         $motherShips.show();
+                                    }
+                            
                             },
                
         stopGame:   function(){
@@ -316,22 +225,19 @@
         scoreCard:  function(){                   
                         if($scorePlayer1.text() === ", score"){
                             console.log($scorePlayer1.text(score));
-                            if(score < 1000){
+                            if(score < 600){
                                 alert("They killed you!")
                             }
                             // console.log('You typed');
                             // console.log(theName);
-                        } else{
-                            if(score < 1000){
-                                alert("They killed you!")
-                            }
+                        } else{ alert("You've won!")
                             console.log($scorePlayer2.text(score))
                         }
                     },
         
         winner:     function(){
                         $gameOver.show(1000);
-                        if(score < 5000){
+                        if(score < 600){
                             $gameOver.text("They've anhilated you!!") 
                         }else{
                             if(parseInt($scorePlayer1.text())>parseInt($scorePlayer2.text())){                                  // higher scored player won.                
@@ -361,8 +267,6 @@
     window.addEventListener("keydown", game.photon);
 
     $okBtn.on("click", game.goButton);
-
-    // $spaceCraft.css({'marginTop': '10px', 'marginLeft': '50px'})
 
 
     //keydown, key up, left, right functions
